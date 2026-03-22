@@ -1,0 +1,465 @@
+TAP version 14
+Server is listening on 3000
+# Subtest: POST /tasks
+    not ok 1 - should be equal
+      ---
+      compare: ===
+      at:
+        fileName: test/server.test.js
+        lineNumber: 13
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:13:5)
+      source: |2
+          };
+          const response = await server.post("/tasks").send(newTask);
+          t.equal(response.status, 201);
+        ----^
+          t.end();
+        });
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -201
+        +404
+      ...
+    
+    1..1
+not ok 1 - POST /tasks # time=26.084ms
+  ---
+  at:
+    fileName: test/server.test.js
+    lineNumber: 6
+    columnNumber: 5
+    typeName: Object
+  source: |
+    const server = supertest(app);
+  
+    tap.test("POST /tasks", async (t) => {
+    ----^
+      const newTask = {
+        title: "New Task",
+  ...
+
+# Subtest: POST /tasks with invalid data
+    not ok 1 - should be equal
+      ---
+      compare: ===
+      at:
+        fileName: test/server.test.js
+        lineNumber: 22
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:22:5)
+      source: |2
+          };
+          const response = await server.post("/tasks").send(newTask);
+          t.equal(response.status, 400);
+        ----^
+          t.end();
+        });
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -400
+        +404
+      ...
+    
+    1..1
+not ok 2 - POST /tasks with invalid data # time=3.761ms
+  ---
+  at:
+    fileName: test/server.test.js
+    lineNumber: 17
+    columnNumber: 5
+    typeName: Object
+  source: |
+    });
+  
+    tap.test("POST /tasks with invalid data", async (t) => {
+    ----^
+      const newTask = {
+        title: "New Task",
+  ...
+
+# Subtest: GET /tasks
+    not ok 1 - should be equal
+      ---
+      compare: ===
+      at:
+        fileName: test/server.test.js
+        lineNumber: 28
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:28:5)
+      source: |
+        tap.test("GET /tasks", async (t) => {
+          const response = await server.get("/tasks");
+          t.equal(response.status, 200);
+        ----^
+          t.hasOwnProp(response.body[0], "id");
+          t.hasOwnProp(response.body[0], "title");
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -200
+        +404
+      ...
+    
+    not ok 2 - Cannot convert undefined or null to object
+      ---
+      at:
+        fileName: test/server.test.js
+        lineNumber: 29
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:29:5)
+      source: |2
+          const response = await server.get("/tasks");
+          t.equal(response.status, 200);
+          t.hasOwnProp(response.body[0], "id");
+        ----^
+          t.hasOwnProp(response.body[0], "title");
+          t.hasOwnProp(response.body[0], "description");
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -id
+        +undefined
+      ...
+    
+    not ok 3 - Cannot convert undefined or null to object
+      ---
+      at:
+        fileName: test/server.test.js
+        lineNumber: 30
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:30:5)
+      source: |2
+          t.equal(response.status, 200);
+          t.hasOwnProp(response.body[0], "id");
+          t.hasOwnProp(response.body[0], "title");
+        ----^
+          t.hasOwnProp(response.body[0], "description");
+          t.hasOwnProp(response.body[0], "completed");
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -title
+        +undefined
+      ...
+    
+    not ok 4 - Cannot convert undefined or null to object
+      ---
+      at:
+        fileName: test/server.test.js
+        lineNumber: 31
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:31:5)
+      source: |2
+          t.hasOwnProp(response.body[0], "id");
+          t.hasOwnProp(response.body[0], "title");
+          t.hasOwnProp(response.body[0], "description");
+        ----^
+          t.hasOwnProp(response.body[0], "completed");
+          t.type(response.body[0].id, "number");
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -description
+        +undefined
+      ...
+    
+    not ok 5 - Cannot convert undefined or null to object
+      ---
+      at:
+        fileName: test/server.test.js
+        lineNumber: 32
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:32:5)
+      source: |2
+          t.hasOwnProp(response.body[0], "title");
+          t.hasOwnProp(response.body[0], "description");
+          t.hasOwnProp(response.body[0], "completed");
+        ----^
+          t.type(response.body[0].id, "number");
+          t.type(response.body[0].title, "string");
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -completed
+        +undefined
+      ...
+    
+    not ok 6 - Cannot read properties of undefined (reading 'id')
+      ---
+      stack: |
+        Test.<anonymous> (test/server.test.js:33:27)
+      at:
+        fileName: test/server.test.js
+        lineNumber: 33
+        columnNumber: 27
+        typeName: Test
+        methodName: <anonymous>
+        functionName: Test.<anonymous>
+      type: TypeError
+      tapCaught: returnedPromiseRejection
+      source: |2
+          t.hasOwnProp(response.body[0], "description");
+          t.hasOwnProp(response.body[0], "completed");
+          t.type(response.body[0].id, "number");
+        --------------------------^
+          t.type(response.body[0].title, "string");
+          t.type(response.body[0].description, "string");
+      ...
+    
+    1..6
+not ok 3 - GET /tasks # time=6.709ms
+  ---
+  at:
+    fileName: test/server.test.js
+    lineNumber: 26
+    columnNumber: 5
+    typeName: Object
+  source: |
+    });
+  
+    tap.test("GET /tasks", async (t) => {
+    ----^
+      const response = await server.get("/tasks");
+      t.equal(response.status, 200);
+  ...
+
+# Subtest: GET /tasks/:id
+    not ok 1 - should be equal
+      ---
+      compare: ===
+      at:
+        fileName: test/server.test.js
+        lineNumber: 42
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:42:5)
+      source: |
+        tap.test("GET /tasks/:id", async (t) => {
+          const response = await server.get("/tasks/1");
+          t.equal(response.status, 200);
+        ----^
+          const expectedTask = {
+            id: 1,
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -200
+        +404
+      ...
+    
+    not ok 2 - should match pattern
+      ---
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,6 +1,2 @@
+         Object {
+        -  "id": 1,
+        -  "title": "Set up environment",
+        -  "description": "Install Node.js, npm, and git",
+        -  "completed": true,
+         }
+      at:
+        fileName: test/server.test.js
+        lineNumber: 49
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:49:5)
+      source: |2
+            completed: true,
+          };
+          t.match(response.body, expectedTask);
+        ----^
+          t.end();
+        });
+      ...
+    
+    1..2
+not ok 4 - GET /tasks/:id # time=3.905ms
+  ---
+  at:
+    fileName: test/server.test.js
+    lineNumber: 40
+    columnNumber: 5
+    typeName: Object
+  source: |
+    });
+  
+    tap.test("GET /tasks/:id", async (t) => {
+    ----^
+      const response = await server.get("/tasks/1");
+      t.equal(response.status, 200);
+  ...
+
+# Subtest: GET /tasks/:id with invalid id
+    ok 1 - should be equal
+    1..1
+ok 5 - GET /tasks/:id with invalid id # time=1.2ms
+
+# Subtest: PUT /tasks/:id
+    not ok 1 - should be equal
+      ---
+      compare: ===
+      at:
+        fileName: test/server.test.js
+        lineNumber: 66
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:66:5)
+      source: |2
+          };
+          const response = await server.put("/tasks/1").send(updatedTask);
+          t.equal(response.status, 200);
+        ----^
+          t.end();
+        });
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -200
+        +404
+      ...
+    
+    1..1
+not ok 6 - PUT /tasks/:id # time=3.541ms
+  ---
+  at:
+    fileName: test/server.test.js
+    lineNumber: 59
+    columnNumber: 5
+    typeName: Object
+  source: |
+    });
+  
+    tap.test("PUT /tasks/:id", async (t) => {
+    ----^
+      const updatedTask = {
+        title: "Updated Task",
+  ...
+
+# Subtest: PUT /tasks/:id with invalid id
+    ok 1 - should be equal
+    1..1
+ok 7 - PUT /tasks/:id with invalid id # time=0.928ms
+
+# Subtest: PUT /tasks/:id with invalid data
+    not ok 1 - should be equal
+      ---
+      compare: ===
+      at:
+        fileName: test/server.test.js
+        lineNumber: 88
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:88:5)
+      source: |2
+          };
+          const response = await server.put("/tasks/1").send(updatedTask);
+          t.equal(response.status, 400);
+        ----^
+          t.end();
+        });
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -400
+        +404
+      ...
+    
+    1..1
+not ok 8 - PUT /tasks/:id with invalid data # time=1.303ms
+  ---
+  at:
+    fileName: test/server.test.js
+    lineNumber: 81
+    columnNumber: 5
+    typeName: Object
+  source: |
+    });
+  
+    tap.test("PUT /tasks/:id with invalid data", async (t) => {
+    ----^
+      const updatedTask = {
+        title: "Updated Task",
+  ...
+
+# Subtest: DELETE /tasks/:id
+    not ok 1 - should be equal
+      ---
+      compare: ===
+      at:
+        fileName: test/server.test.js
+        lineNumber: 94
+        columnNumber: 5
+        typeName: Test
+      stack: |
+        Test.<anonymous> (test/server.test.js:94:5)
+      source: |
+        tap.test("DELETE /tasks/:id", async (t) => {
+          const response = await server.delete("/tasks/1");
+          t.equal(response.status, 200);
+        ----^
+          t.end();
+        });
+      diff: |
+        --- expected
+        +++ actual
+        @@ -1,1 +1,1 @@
+        -200
+        +404
+      ...
+    
+    1..1
+not ok 9 - DELETE /tasks/:id # time=1.308ms
+  ---
+  at:
+    fileName: test/server.test.js
+    lineNumber: 92
+    columnNumber: 5
+    typeName: Object
+  source: |
+    });
+  
+    tap.test("DELETE /tasks/:id", async (t) => {
+    ----^
+      const response = await server.delete("/tasks/1");
+      t.equal(response.status, 200);
+  ...
+
+# Subtest: DELETE /tasks/:id with invalid id
+    ok 1 - should be equal
+    1..1
+ok 10 - DELETE /tasks/:id with invalid id # time=0.978ms
+
+1..10
