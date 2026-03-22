@@ -1,0 +1,76 @@
+TAP version 14
+Server is listening on 3000
+# Subtest: POST /api/tasks - create valid task
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    1..3
+ok 1 - POST /api/tasks - create valid task # time=14.082ms
+
+# Subtest: POST /api/tasks - invalid input
+    ok 1 - should be equal
+    1..1
+ok 2 - POST /api/tasks - invalid input # time=1.438ms
+
+# Subtest: GET /api/tasks - get all tasks
+    ok 1 - should be equal
+    ok 2 - type is Array
+    1..2
+ok 3 - GET /api/tasks - get all tasks # time=1.742ms
+
+# Subtest: GET /api/tasks?completed=true - filter tasks
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 4 - GET /api/tasks?completed=true - filter tasks # time=1.706ms
+
+# Subtest: GET /api/tasks?sort=asc - sort tasks
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 5 - GET /api/tasks?sort=asc - sort tasks # time=2.641ms
+
+# Subtest: GET /api/tasks/:id - valid
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 6 - GET /api/tasks/:id - valid # time=2.117ms
+
+# Subtest: GET /api/tasks/:id - not found
+    ok 1 - should be equal
+    1..1
+ok 7 - GET /api/tasks/:id - not found # time=0.886ms
+
+# Subtest: PUT /api/tasks/:id - update task
+    ok 1 - should be equal
+    ok 2 - should be equal
+    ok 3 - should be equal
+    1..3
+ok 8 - PUT /api/tasks/:id - update task # time=1.335ms
+
+# Subtest: PUT /api/tasks/:id - invalid data
+    ok 1 - should be equal
+    1..1
+ok 9 - PUT /api/tasks/:id - invalid data # time=0.991ms
+
+# Subtest: DELETE /api/tasks/:id - delete task
+    ok 1 - should be equal
+    1..1
+ok 10 - DELETE /api/tasks/:id - delete task # time=1.075ms
+
+# Subtest: DELETE /api/tasks/:id - not found
+    ok 1 - should be equal
+    1..1
+ok 11 - DELETE /api/tasks/:id - not found # time=0.612ms
+
+# Subtest: GET /api/tasks/priority/:level
+    ok 1 - should be equal
+    ok 2 - should be equal
+    1..2
+ok 12 - GET /api/tasks/priority/:level # time=1.124ms
+
+# Subtest: GET /api/tasks/priority/:level - invalid
+    ok 1 - should be equal
+    1..1
+ok 13 - GET /api/tasks/priority/:level - invalid # time=0.45ms
+
